@@ -1,3 +1,6 @@
+# Creazione di un nuovo cluster role bindings "admin-user-global"
+# e associazione nel binding tra utenza "admin-user ""
+# ruolo amministrativo del cluster "cluster-admin"
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:

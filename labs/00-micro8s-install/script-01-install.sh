@@ -17,13 +17,17 @@ microk8s enable dashboard
 microk8s enable rbac
 microk8s enable ingress
 
-# If RBAC is not enabled access the dashboard using the token # retrieved with:
+# If RBAC is not enabled access the dashboard using the token 
+# retrieved with:
 # 
-# microk8s kubectl describe secret -n kube-system # microk8s-dashboard-token
+# microk8s kubectl describe secret -n kube-system 
+# microk8s-dashboard-token
 # 
-# Use this token in the https login UI of the kubernetes-dashboard # service.
+# Use this token in the https login UI of the kubernetes-dashboard 
+# service.
 # 
-# In an RBAC enabled setup (microk8s enable RBAC) you need to create # a user with restricted
+# In an RBAC enabled setup (microk8s enable RBAC) you need to create 
+# a user with restricted
 # permissions as shown in:
 # https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md
 
