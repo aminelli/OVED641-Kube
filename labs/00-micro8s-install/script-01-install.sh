@@ -12,7 +12,10 @@ sudo chown -R corsokube ~/.kube
 microk8s kubectl get all --all-namespaces
 
 # Enable Add-ons
-microk8s enable dns dashboard
+microk8s enable dns 
+microk8s enable dashboard
+microk8s enable rbac
+microk8s enable ingress
 
 # If RBAC is not enabled access the dashboard using the token # retrieved with:
 # 
