@@ -2,6 +2,6 @@
 
 microk8s kubectl apply -f 01-service-account.yaml
 microk8s kubectl apply -f 02-cluster-role-binding.yaml
-bash 03-generate-token.sh
+exec ./03-generate-token.sh
 microk8s kubectl apply -f 04-secret.yaml
-bash 05-get-generate-token.sh
+exec ./05-get-generate-token.sh
