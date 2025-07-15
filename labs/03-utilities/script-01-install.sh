@@ -4,7 +4,6 @@
 echo "alias mkctl='microk8s kubectl'" >> ~/.bashrc
 source ~/.bashrc
 
-
 #####  KUBECTL #####  
 # https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
 sudo snap install kubectl --classic
@@ -29,8 +28,3 @@ printf "
 source '$HOME/.kube/completion.bash.inc'
 " >> $HOME/.bash_profile
 source $HOME/.bash_profile
-
-# Load the kubectl completion code for zsh[1] into the current shell
-# source <(kubectl completion zsh)
-# Set the kubectl completion code for zsh[1] to autoload on startup
-# kubectl completion zsh > "${fpath[1]}/_kubectl"
