@@ -34,10 +34,9 @@ microk8s enable ingress
 alias mkctl="microk8s kubectl"
 
 
-deployment.apps/nginx created
+  
 
-mkctl expose deployment nginx --port 80 --target-port 80 --selector app=nginx --type ClusterIP --name nginx
-
+# mkctl expose deployment nginx --port 80 --target-port 80 --selector app=nginx --type ClusterIP --name nginx
 microk8s kubectl expose deployment nginx --port 80 --target-port 80 --selector app=nginx --type ClusterIP --name nginx
 
 # watch microk8s kubectl get all
