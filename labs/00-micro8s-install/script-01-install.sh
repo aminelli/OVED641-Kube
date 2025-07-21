@@ -33,7 +33,6 @@ microk8s enable ingress
 
 alias mkctl="microk8s kubectl"
 
-
   
 
 # mkctl expose deployment nginx --port 80 --target-port 80 --selector app=nginx --type ClusterIP --name nginx
@@ -41,7 +40,7 @@ microk8s kubectl expose deployment nginx --port 80 --target-port 80 --selector a
 
 # watch microk8s kubectl get all
 
-sudo apt-get -y install net-tools
+sudo apt-get install -y net-tools
 
 
 microk8s dashboard-proxy
