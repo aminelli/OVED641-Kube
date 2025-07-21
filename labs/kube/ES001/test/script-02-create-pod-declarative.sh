@@ -1,6 +1,6 @@
 #!/bin/bash
 
-microk8s kubectl apply -f kube-pod.yaml
+kubectl apply -f kube-pod.yaml
 
 
 kubectl get pods
@@ -10,5 +10,8 @@ kubectl describe pods hazelcast
 kubectl describe pods hazelcast | grep Image
 kubectl logs hazelcast
 kubectl exec -it hazelcast -- /bin/sh
+kubectl exec hazelcast -- env
 
+# Cancellazione del POD
+# kubectl delete -f kube-pod.yaml
 
