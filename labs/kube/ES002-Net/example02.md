@@ -14,7 +14,7 @@ kubectl run whoami2 --image=traefik/whoami --port 80 --labels="app=whoami"
 # Show delle labels dei pod
 kubectl get pods --show-labels
 
-# Creazione del service NodePOrt
+# Creazione del service NodePort (range delle porte: 30000-32767)
 kubectl apply -f kube-nodeport-whoami.yaml
 
 # Info su service NodePort
