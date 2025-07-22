@@ -34,7 +34,7 @@ spec:
   - IPv4
   ipFamilyPolicy: SingleStack
   ports:
-  - port: 9081
+  - port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
