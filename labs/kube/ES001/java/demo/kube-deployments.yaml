@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: webapp
-  name: webapp-deployment
+  name: webapp
   namespace: default
 spec:
   replicas: 3
@@ -18,13 +18,15 @@ spec:
       containers:
       - image: aminelli/spring-app-demo:1.1.0
         name: webapp
+        ports:
+        - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
   labels:
     app: webapp
-  name: webapp-service
+  name: webapp
   namespace: default
 spec:
   internalTrafficPolicy: Cluster
