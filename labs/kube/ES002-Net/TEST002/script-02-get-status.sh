@@ -1,4 +1,4 @@
-#!/Nin/bash
+#!/bin/bash
 
 kubectl get po,svc nginx
 read -p "Press [Enter] to continue after checking the pod and service status..."
