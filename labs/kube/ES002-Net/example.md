@@ -84,4 +84,15 @@ curl 10.152.183.51
 # Curl sul pod del servizio "nginx"
 curl 10.1.9.145
 
+
+## Ora proviamo degli expose con port-forward utilizzato solitamente per testare i servizi
+# Caso 1: Expose sull'host sulla 8080
+kubectl port-forward pod/nginx 8080:80
+
+# Caso 2: Expose sull'host sulla 8080 con binding su tutte le interfacce
+# Expose con binding 0.0.0.0
+kubectl port-forward --address 0.0.0.0 pod/nginx 8080:80
+
+
+
 ```
