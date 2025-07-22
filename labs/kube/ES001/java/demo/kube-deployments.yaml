@@ -38,4 +38,4 @@ spec:
     nodePort: 30080
   selector:
     app: testweb
-  type: ClusterIP
+  type: NodePort
