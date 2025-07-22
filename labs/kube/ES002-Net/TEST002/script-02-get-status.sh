@@ -1,8 +1,9 @@
 #!/bin/bash
 
 kubectl get po,svc nginx
-read -p "Press [Enter] to continue after checking the pod and service status..."
+read -p "Press [Enter] "
 kubectl get po nginx --show-labels
-read -p "Press [Enter] to continue after checking the pod labels..."
+read -p "Press [Enter]"
 kubectl describe svc nginx
-
+read -p "Press [Enter]"
+kubectl get pod nginx -o wide

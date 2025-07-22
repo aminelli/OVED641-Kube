@@ -40,7 +40,48 @@ kubectl run nginx --image nginx --expose=true --port=80
 
 # Verifica stato del servizio e del POD
 kubectl get po,svc nginx
+
+### OUTPUT
+# NAME        READY   STATUS    RESTARTS   AGE
+# pod/nginx   1/1     Running   0          2m25s
+# 
+# NAME            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+# service/nginx   ClusterIP   10.152.183.51   <none>        80/TCP    2m25s
+
+
 kubectl get po nginx --show-labels
+
+### OUTPUT
+# NAME    READY   STATUS    RESTARTS   AGE     LABELS
+# nginx   1/1     Running   0          3m17s   run=nginx
+
+
 kubectl describe svc nginx
+### OUTPUT
+# Name:                     nginx
+# Namespace:                default
+# Labels:                   <none>
+# Annotations:              <none>
+# Selector:                 run=nginx
+# Type:                     ClusterIP
+# IP Family Policy:         SingleStack
+# IP Families:              IPv4
+# IP:                       10.152.183.51
+# IPs:                      10.152.183.51
+# Port:                     <unset>  80/TCP
+# TargetPort:               80/TCP
+# Endpoints:                10.1.9.145:80
+# Session Affinity:         None
+# Internal Traffic Policy:  Cluster
+# Events:                   <none>
+
+kubectl get pod nginx -o wide
+# NAME    READY   STATUS    RESTARTS   AGE   IP           NODE              NOMINATED NODE   READINESS GATES
+# nginx   1/1     Running   0          11m   10.1.9.145   vm-ania-docente   <none>           <none>
+
+# Curl sul servizio "nginx"
+curl 10.152.183.51
+# Curl sul pod del servizio "nginx"
+curl 10.1.9.145
 
 ```
