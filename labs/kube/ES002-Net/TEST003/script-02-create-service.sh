@@ -1,6 +1,6 @@
 #!/bin/bash
 
-kube apply -f kube-nodeport-whoami.yaml
+kubectl apply -f kube-nodeport-whoami.yaml
 
 read -p "Press [Enter] to continue..."
 
