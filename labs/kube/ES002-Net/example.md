@@ -22,7 +22,14 @@ kubectl get pod new-nginx-pod -o wide
 # NAME            READY   STATUS    RESTARTS   AGE   IP           NODE              NOMINATED NODE   READINESS GATES
 # new-nginx-pod   1/1     Running   0          95s   10.1.9.143   vm-ania-docente   <none>           <none>
 
-# Eliminazione POD
+# Eliminazione e ricreazione POD
 kubectl delete -f 01-new-nginx-pod.yaml
 kubectl create -f 01-new-nginx-pod.yaml
+
+kubectl get pod new-nginx-pod -o wide
+#### OUTPUT SIMILE A QUESTO ####
+# NAME            READY   STATUS    RESTARTS   AGE   IP           NODE              NOMINATED NODE   READINESS GATES
+# new-nginx-pod   1/1     Running   0          21s   10.1.9.147   vm-ania-docente   <none>           <none>
+
+
 ```
