@@ -30,6 +30,17 @@ kubectl get pod new-nginx-pod -o wide
 #### OUTPUT SIMILE A QUESTO ####
 # NAME            READY   STATUS    RESTARTS   AGE   IP           NODE              NOMINATED NODE   READINESS GATES
 # new-nginx-pod   1/1     Running   0          21s   10.1.9.147   vm-ania-docente   <none>           <none>
+```
 
+## Creazione di un SERVICE
+
+```shell
+# Creiamo un servizio
+kubectl run nginx --image nginx --expose=true --port=80
+
+# Verifica stato del servizio e del POD
+kubectl get po,svc nginx
+kubectl get po nginx --show-labels
+kubectl describe svc nginx
 
 ```
