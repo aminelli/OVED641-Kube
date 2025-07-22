@@ -2,31 +2,29 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: webapp
-  name: webapp
+    app: testweb
+  name: testweb
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: webapp
+      app: testweb
   template:
     metadata:
       labels:
-        app: webapp
+        app: testweb
     spec:
       containers:
       - image: aminelli/spring-app-demo:1.1.0
-        name: webapp
-        ports:
-        - containerPort: 8080
+        name: testweb
 ---
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: webapp
-  name: webapp
+    app: testweb
+  name: testweb
   namespace: default
 spec:
   internalTrafficPolicy: Cluster
@@ -38,5 +36,5 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: webapp
+    app: testweb
   type: ClusterIP
