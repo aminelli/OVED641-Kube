@@ -1,4 +1,4 @@
-# Esporre i POD con i Services
+# Esporre i POD con i Services ClusterIP
 
 ## K8S-UTILS - Creazione di un'immagine docker di servizio per le utility di rete
 
