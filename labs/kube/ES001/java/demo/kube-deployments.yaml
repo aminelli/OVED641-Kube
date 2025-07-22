@@ -35,7 +35,7 @@ spec:
   - port: 8080
     protocol: TCP
     targetPort: 8080
-    nodeport: 30080
+    nodePort: 30080
   selector:
     app: testweb
   type: ClusterIP
