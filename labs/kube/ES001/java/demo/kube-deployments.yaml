@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: webapp-deployment
+  name: webapp
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - image: aminelli/spring-app-demo:1.1.0
+        name: webapp
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: webapp
+  name: webapp-service
+  namespace: default
+spec:
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 9081
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: webapp
+  type: ClusterIP
