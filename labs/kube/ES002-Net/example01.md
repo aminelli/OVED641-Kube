@@ -1,6 +1,6 @@
 # Esporre i POD con i Services
 
-## Creazione di un'immagine docker di servizio per utilityacere le utility di rete
+## K8S-UTILS - Creazione di un'immagine docker di servizio per le utility di rete
 
 ```shell
 docker build -t k8sutils:debian12 .
@@ -9,8 +9,11 @@ docker push aminelli/k8sutils:debian12
 ```
 
 
-## Comprendere l'assegnazione degli IP ai POD
+## Service di tipo ClusterIP
 
+
+
+### TEST001 - Comprendere l'assegnazione degli IP ai POD
 
 ```shell
 # Creazione POD
@@ -32,7 +35,8 @@ kubectl get pod new-nginx-pod -o wide
 # new-nginx-pod   1/1     Running   0          21s   10.1.9.147   vm-ania-docente   <none>           <none>
 ```
 
-## Creazione di un SERVICE
+
+### TEST002 - Service di tipo ClusterIP
 
 ```shell
 # Creiamo un servizio
@@ -98,5 +102,9 @@ kubectl port-forward --address 0.0.0.0 pod/nginx 8080:80
 ## Alla scoperta dei servizi
 
 ```shell
+# Creazione del pod di servizio
 kubectl apply -f kube-k8s-utils.yaml
+
+# Verifica stato del pod di servizio
+kubectl exec -it k8sutils -- nslookup nginx.default.svc.cluster.local
 ```
