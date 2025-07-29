@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Creazione service
+kubectl apply -f external-name.yaml
+
 # Creazione di un pod di test
 kubectl run ubuntu-test --image=ubuntu --restart=Never --command -- sleep infinity
 
@@ -11,3 +14,6 @@ kubectl exec -it ubuntu-test -- sh
 apt-get update
 apt-get install -y iputils-ping
 
+
+# Dall'interno del container
+ping mysql-sb-srv.default.svc.cluster.local
