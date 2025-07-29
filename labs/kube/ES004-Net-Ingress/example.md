@@ -27,4 +27,33 @@ kubectl create ingress route-test-ingress \
 
 kubectl apply -f 01-ingress.yaml
 
+
+# Per verificare se l'ingress è sato creato:
+kubectl get ingress
+# Outpu atteso:
+# NAME                 CLASS    HOSTS              ADDRESS     PORTS   AGE
+# route-test-ingress   public   test.example.com   127.0.0.1   80      8m7s
+
+# Per ottenere un dettaglio del servizio e del suo stato:
+kubectl describe ingress route-test-ingress
+# Outpu atteso:
+# Name:             route-test-ingress
+# Labels:           <none>
+# Namespace:        default
+# Address:          127.0.0.1
+# Ingress Class:    public
+# Default backend:  <default>
+# Rules:
+#   Host              Path  Backends
+#   ----              ----  --------
+#   test.example.com
+#                     /app01   app-service-01:8080 (<error: services "app-service-01" not found>)
+#                     /app02   app-service-02:9090 (<error: services "app-service-02" not found>)
+# Annotations:        nginx.ingress.kubernetes.io/rewrite-target: /$1
+# Events:             <none>
+
+
+
+
+
 ```
