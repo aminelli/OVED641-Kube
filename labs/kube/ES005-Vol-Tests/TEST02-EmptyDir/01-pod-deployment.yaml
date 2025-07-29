@@ -26,3 +26,8 @@ spec:
     - name: vol-sharing-data
       emptyDir:
         medium: Memory
+        sizeLimit: 64Mi
+      # Se invec vuoi un host path commenta emptyDir e abilita le seguenti righe
+      # path: /data/foo # directory location on host
+      # type: Directory # this field is optional
+
