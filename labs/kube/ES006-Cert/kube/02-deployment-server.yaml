@@ -1,0 +1,97 @@
+# Deployment del Servizio API
+# Questo Deployment crea i pod per il servizio API. 
+
+# Il volumeMounts e volumes sono cruciali per montare il certificato 
+# generato da Cert-Manager.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-service-deployment
+  labels:
+    app: api-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-service
+  template:
+    metadata:
+      labels:
+        app: api-service
+    spec:
+      containers:
+        - name: api-service
+          # Sostituisci con il tuo repository Docker
+          image: aminelli/demo-cert-server:v1 
+          ports:
+            - containerPort: 8443
+              name: https
+          # livenessProbe:
+          #   httpGet:
+          #     path: /health
+          #     port: 8443
+          #     scheme: HTTPS
+          #   initialDelaySeconds: 30
+          #   periodSeconds: 30
+          # readinessProbe:
+          #   httpGet:
+          #     path: /health
+          #     port: 8443
+          #     scheme: HTTPS
+          #   initialDelaySeconds: 15
+          #   periodSeconds: 10
+          # resources:
+          #   requests:
+          #     memory: "256Mi"
+          #     cpu: "250m"
+          #   limits:
+          #     memory: "512Mi"
+          #     cpu: "500m"
+          volumeMounts:
+            - name: tls-secret-volume
+              # Il percorso dove Spring Boot si aspetta il certificato
+              mountPath: /app/certs 
+              readOnly: true
+      volumes:
+        - name: tls-secret-volume
+          secret:
+            # Il Secret contenente il certificato
+            # secretName: api-service-tls-secret 
+            secretName: java-ca-secret
+            items:
+              - key: tls.p12 
+                path: tls.p12
+              # - key: keystore.p12 
+              #   path: keystore.p12
+              # - key: tls.crt
+              #  path: tls.crt
+              # - key: tls.key
+              #  path: tls.key
+
+              # Cert-Manager può genera un file PKCS12 per convenienza
+              # - key: tls.p12 
+              #   path: tls.p12
+
+---
+# Questo Service espone il Deployment dell'API all'interno del cluster.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-service
+  labels:
+    app: api-service
+spec:
+  type: ClusterIP
+  selector:
+    app: api-service
+  ports:
+    - protocol: TCP
+      # Porta esposta dal servizio
+      port: 8443 
+      # Porta del container
+      targetPort: 8443
+      name: https
+  
+

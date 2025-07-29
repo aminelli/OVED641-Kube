@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-app-deployment
+  labels:
+    app: client-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client-app
+  template:
+    metadata:
+      labels:
+        app: client-app
+    spec:
+      containers:
+        - name: client-app
+          # Sostituisci con il tuo repository Docker
+          image: aminelli/demo-cert-client:v1 
+          # envFrom:
+          #   - configMapRef:
+          #       # Riferimento alla ConfigMap
+          #       name: client-config 
+          volumeMounts:
+            - name: tls-secret-volume-client
+              # Il percorso dove Spring Boot si aspetta il certificato
+              mountPath: /app/certs 
+              readOnly: true
+      volumes:
+        - name: tls-secret-volume-client
+          secret:
+            # Il Secret contenente il certificato
+            # secretName: api-service-tls-secret 
+            secretName: java-ca-secret
+            items:
+              - key: tls.p12 
+                path: tls.p12
+              # - key: keystore.p12 
+              #   path: keystore.p12
+              - key: tls.crt
+                path: tls.crt
+              - key: tls.key
+                path: tls.key
+
+              # Cert-Manager può genera un file PKCS12 per convenienza
+              # - key: tls.p12 
+              #   path: tls.p12
