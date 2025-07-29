@@ -39,3 +39,6 @@ spec:
           - path: "labels"
             fieldRef:
               fieldPath: metadata.labels
+          - path: "all.metadata.ini"
+            fieldRef:
+              fieldPath: metadata
