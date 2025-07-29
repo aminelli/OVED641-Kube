@@ -5,4 +5,4 @@ metadata:
   namespaces: default
 spec:
   type: ExternalName
-  exteralName: marte.etlforma.com
+  externalName: marte.etlforma.com
