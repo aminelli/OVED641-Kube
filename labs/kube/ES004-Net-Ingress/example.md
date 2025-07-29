@@ -87,7 +87,7 @@ kubectl get ingress route-test-ingress --output=jsonpath="{.status.loadBalancer.
 # Ouput:
 # 127.0.0.1
 
-sudo echo "127.0.0.1 test.example.com" >> /etc/hosts
+echo "127.0.0.1 test.example.com" | sudo tee -a /etc/hosts > /dev/null
 
 curl test.example.com/app01
 curl test.example.com/app02
