@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: empty-demo-pod
+  labels:
+    app: empty-demo-app
+    env: dev
+  annotations:
+    description: "Esempio di utilizzo di un empty volume"
+spec:
+  containers:
+    - name: writer
+      image: busybox
+      command: ["/bin/sh", "-c","echo 'ciao' > /data/scambio.txt && sleep infinity"]
+      volumeMounts:
+        - name: vol-sharing-data
+          mountPath: /data
+    - name: reader
+      image: busybox
+      command: ["/bin/sh", "-c","cat /data/scambio.txt && sleep infinity"]
+      volumeMounts:
+        - name: vol-sharing-data
+          mountPath: /data
+      
+  volumes:
+    - name: vol-sharing-data
+      emptyDir:
+        medium: Memory
