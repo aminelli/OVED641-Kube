@@ -39,6 +39,6 @@ spec:
           - path: "labels"
             fieldRef:
               fieldPath: metadata.labels
-          - path: "metadata"
+          - path: "annotations"
             fieldRef:
-              fieldPath: metadata.all
+              fieldPath: metadata.annotations
