@@ -53,6 +53,16 @@ kubectl describe ingress route-test-ingress
 # Events:             <none>
 
 
+# Creazione Pod da mettere sotto i service gestiti dall'ingress
+
+kubectl run app-01 --image=k8s.gcr.io/echoserver:1.10 --port=8080 -l app=app-service-01
+kubectl run app-02 --image=k8s.gcr.io/echoserver:1.10 --port=8080 -l app=app-service-02
+
+# Creazione Service da mettere sotto ingress
+
+kubectl create service clusterip app-service-01 --tcp=8080:8080
+kubectl create service clusterip app-service-02 --tcp=9090:8080
+
 
 
 
