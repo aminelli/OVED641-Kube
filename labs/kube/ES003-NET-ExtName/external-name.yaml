@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mysql-sb-srv
-  namespaces: default
+  namespace: default
 spec:
   type: ExternalName
   externalName: marte.etlforma.com
