@@ -63,6 +63,24 @@ kubectl run app-02 --image=k8s.gcr.io/echoserver:1.10 --port=8080 -l app=app-ser
 kubectl create service clusterip app-service-01 --tcp=8080:8080
 kubectl create service clusterip app-service-02 --tcp=9090:8080
 
+# Per verificare creazione pods e services:
+kubectl get all
+# Outpu atteso: (attenzione variano gli ip)
+# NAME         READY   STATUS    RESTARTS   AGE
+# pod/app-01   1/1     Running   0          2m15s
+# pod/app-02   1/1     Running   0          82s
+# 
+# NAME                     TYPE           CLUSTER-IP       EXTERNAL-IP          PORT(S)    AGE
+# service/app-service-01   ClusterIP      10.152.183.230   <none>               8080/TCP   36s
+# service/app-service-02   ClusterIP      10.152.183.158   <none>               9090/TCP   8s
+# service/kubernetes       ClusterIP      10.152.183.1     <none>               443/TCP    14d
+# service/mysql-sb-srv     ExternalName   <none>           marte.etlforma.com   <none>     146m
+
+# per testare service "app-service-01"
+curl 10.152.183.230:8080
+
+# per testare service "app-service-02"
+curl 10.152.183.158:9090
 
 
 
