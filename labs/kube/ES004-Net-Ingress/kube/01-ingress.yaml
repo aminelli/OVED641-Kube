@@ -1,0 +1,28 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: route-test-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  ingressClassName: public
+  rules:
+    - host: test.example.com
+      http:
+        paths:
+          - path: /app01
+            pathType: Exact
+            backend:
+              service:
+                name: app-service-01
+                port:
+                  number: 8080
+          - path: /app02
+            pathType: Exact
+            backend:
+              service:
+                name: app-service-02
+                port:
+                  number: 9090
+    #- host: pippo.example.com

@@ -23,5 +23,8 @@ kubectl create ingress route-test-ingress \
     --rule="test.example.com/app01=app-service-01:8080" \
     --rule="test.example.com/app02=app-service-02:9090"  
 
+# o in alternativa, usare un piano dichiarativo:;ì
+
+kubectl apply -f 01-ingress.yaml
 
 ```
