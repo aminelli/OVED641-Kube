@@ -29,7 +29,7 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
         - name: NODE_NAME
-          valuefrom:
+          valueFrom:
             fieldRef:
               fieldPath: spec.nodeName
       volumeMounts:
@@ -46,6 +46,3 @@ spec:
           - path: "annotations"
             fieldRef:
               fieldPath: metadata.annotations
-          - path: "containers"
-            fieldRef:
-              fieldPath: spec.containers
