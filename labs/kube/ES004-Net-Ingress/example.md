@@ -83,5 +83,22 @@ curl 10.152.183.230:8080
 curl 10.152.183.158:9090
 
 
+kubectl get ingress route-test-ingress --output=jsonpath="{.status.loadBalancer.ingress[0]['ip']}" && echo ""
+# Ouput:
+# 127.0.0.1
+
+sudo echo "127.0.0.1 test.example.com" >> /etc/hosts
+
+curl test.example.com/app01
+curl test.example.com/app02
+
+
+
+
 
 ```
+
+status:
+  loadBalancer:
+    ingress:
+      - ip: 127.0.0.1
